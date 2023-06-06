@@ -18,5 +18,5 @@ export function registerRoutes(router: Router, prefix: string = ''): void {
   router.use(`${prefix}/cliente`, new ClienteRoutes().routes());
   router.use(`${prefix}/sala`, new SalaRoutes().routes());
   router.use(`${prefix}/filme`, new FilmeRoutes().routes());
-  router.use(`${prefix}/filme`, new PoltronaRoutes().routes());
+  router.use(`${prefix}/poltrona`, new PoltronaRoutes().routes());
 }
