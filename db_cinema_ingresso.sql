@@ -23,7 +23,7 @@ create table filme (
 create table sala (
                       id int primary key auto_increment,
                       nome varchar(300),
-                      capacidade varchar(300),
+                      capacidade int,
                       local_sala varchar(300)
 );
 

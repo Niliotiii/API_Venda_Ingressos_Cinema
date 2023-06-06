@@ -26,12 +26,10 @@ export class ClienteController {
 
   public async createCliente(req: Request, res: Response) {
 
-    let { nome, sexo, data_nascimento, cpf, rg, email, endereco, telefone } = req.body;
+    let { nome, cpf, rg, email, endereco, telefone } = req.body;
 
     let cliente = new Cliente();
     cliente.nome = nome;
-    cliente.sexo = sexo;
-    cliente.data_nascimento = data_nascimento;
     cliente.cpf = cpf;
     cliente.rg = rg;
     cliente.email = email;
@@ -45,14 +43,12 @@ export class ClienteController {
 
   public async updateCliente(req: Request, res: Response) {
     const clienteId = parseInt(req.params.id, 10);
-    const { nome, sexo, data_nascimento, cpf, rg, email, endereco, telefone } = req.body;
+    const { nome, cpf, rg, email, endereco, telefone } = req.body;
 
     const cliente = await AppDataSource.manager.findOne(Cliente, { where: { id:clienteId }} );
 
     if (cliente) {
       cliente.nome = nome;
-      cliente.sexo = sexo;
-      cliente.data_nascimento = data_nascimento;
       cliente.cpf = cpf;
       cliente.rg = rg;
       cliente.email = email;

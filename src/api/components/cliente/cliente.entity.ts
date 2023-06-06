@@ -9,12 +9,6 @@ id!: number;
 nome!: string;
 
 @Column()
-sexo!: string;
-
-@Column()
-data_nascimento!: Date;
-
-@Column()
 cpf!: string;
 
 @Column()

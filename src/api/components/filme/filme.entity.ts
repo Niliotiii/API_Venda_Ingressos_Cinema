@@ -18,11 +18,5 @@ atores!: string;
 diretor!: string;
 
 @Column()
-genero!: string;
-
-@Column()
-duracao!: string;
-
-@Column()
-classificacao_indicativa!: string;
+tempo!: string;
 }
