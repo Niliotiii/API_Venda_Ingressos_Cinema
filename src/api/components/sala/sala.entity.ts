@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Poltrona } from '../poltrona/poltrona.entity';
 
 @Entity('sala')
 export class Sala {
@@ -14,4 +15,5 @@ export class Sala {
     @Column()
     local_sala!: string;
 
+    
 }

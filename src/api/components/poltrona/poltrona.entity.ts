@@ -1,21 +1,22 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from 'typeorm';
 import { Sala } from '../sala/sala.entity';
 
 @Entity('poltrona')
 export class Poltrona {
-@PrimaryGeneratedColumn()
-id!: number;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-@Column()
-numero!: number;
+  @Column()
+  numero!: number;
 
-@Column()
-fileira!:string;
+  @Column()
+  fileira!: string;
 
-@Column()
-status_poltrona!: boolean;
+  @Column()
+  status_poltrona!: boolean;
 
-@OneToMany(()=> Sala, (Sala)=>Sala.id)
-sala_id!: Sala;
-
+  @ManyToOne( ()=> Sala, (sala)=>sala.id)
+  @JoinColumn({name:'sala_id', referencedColumnName:'id'})
+  sala_id!:Sala;
 }
+

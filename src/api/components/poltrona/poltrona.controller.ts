@@ -5,24 +5,25 @@ import { Poltrona } from './poltrona.entity';
 export class PoltronaController {
 
   public async getAllPoltronas(req: Request, res: Response) {
-
-    const poltronas = await AppDataSource.manager.find(Poltrona)
-
+    const poltronas = await AppDataSource.manager.find(Poltrona, { relations: ['sala_id'] });
+  
     res.status(200).json({ dados: poltronas });
   }
-
-  public async getPoltronaById( req: Request, res: Response) {
-
+  
+  public async getPoltronaById(req: Request, res: Response) {
     const poltronaId = parseInt(req.params.id, 10);
-
-    const poltrona = await AppDataSource.manager.findOne(Poltrona, { where: { id:poltronaId }});
-
+  
+    const poltrona = await AppDataSource.manager.findOne(Poltrona, { 
+      where: { id: poltronaId },
+      relations: ['sala_id']
+    });
+  
     if (poltrona) {
       res.json(poltrona);
     } else {
-      res.status(404).json({ message: 'Poltrona não encontrado' });
+      res.status(404).json({ message: 'Poltrona não encontrada' });
     }
-  }
+  }  
 
   public async createPoltrona(req: Request, res: Response) {
 
