@@ -19,4 +19,3 @@ export class Poltrona {
   @JoinColumn({name:'sala_id', referencedColumnName:'id'})
   sala_id!:Sala;
 }
-

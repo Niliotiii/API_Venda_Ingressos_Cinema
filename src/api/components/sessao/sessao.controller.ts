@@ -6,21 +6,23 @@ export class SessaoController {
 
     public async getAllSessoes(req: Request, res: Response) {
 
-        const sessoes = await AppDataSource.manager.find(Sessao)
+        const sessoes = await AppDataSource.manager.find(Sessao, { relations: ['sala_id', 'filme_id'] })
 
         res.status(200).json({ dados: sessoes });
     }
 
     public async getSessaoById( req: Request, res: Response) {
-
         const sessaoId = parseInt(req.params.id, 10);
-
-        const sessao = await AppDataSource.manager.findOne(Sessao, { where: { id:sessaoId }});
-
+  
+        const sessao = await AppDataSource.manager.findOne(Sessao, { 
+          where: { id: sessaoId },
+          relations: ['sala_id', 'filme_id']
+        });
+      
         if (sessao) {
-            res.json(sessao);
+          res.json(sessao);
         } else {
-            res.status(404).json({ message: 'sessao não encontrado' });
+          res.status(404).json({ message: 'Sessão não encontrada' });
         }
     }
 

@@ -5,6 +5,7 @@ import { SalaRoutes } from "./sala/sala.routes";
 import { FilmeRoutes } from './filme/filme.routes';
 import { PoltronaRoutes } from './poltrona/poltrona.routes';
 import { SessaoRoutes } from "./sessao/sessao.routes";
+import { IngressoRoutes } from './ingresso/ingresso.routes';
 
 
 /**
@@ -21,4 +22,5 @@ export function registerRoutes(router: Router, prefix: string = ''): void {
   router.use(`${prefix}/filme`, new FilmeRoutes().routes());
   router.use(`${prefix}/poltrona`, new PoltronaRoutes().routes());
   router.use(`${prefix}/sessao`, new SessaoRoutes().routes());
+  router.use(`${prefix}/ingresso`, new IngressoRoutes().routes());
 }

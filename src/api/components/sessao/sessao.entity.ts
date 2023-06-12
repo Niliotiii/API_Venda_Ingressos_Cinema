@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Sala } from '../sala/sala.entity';
 import { Filme } from "../filme/filme.entity";
 
@@ -16,9 +16,11 @@ export class Sessao {
     @Column()
     horario_fim!:string;
 
-    @OneToMany(()=> Sala, (Sala)=>Sala.id)
+    @ManyToOne( ()=> Sala, (sala)=>sala.id)
+    @JoinColumn({name:'sala_id', referencedColumnName:'id'})
     sala_id!: Sala;
 
-    @OneToMany(()=> Filme, (Filme)=>Filme.id)
+    @ManyToOne(()=> Filme, (filme)=>filme.id)
+    @JoinColumn({name:'filme_id', referencedColumnName:'id'})
     filme_id!: Filme;
 }
