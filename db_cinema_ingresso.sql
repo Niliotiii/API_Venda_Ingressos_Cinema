@@ -1,3 +1,4 @@
+drop database if exists cinema_ingresso_db;
 create database cinema_ingresso_db;
 use cinema_ingresso_db;
 
@@ -23,14 +24,14 @@ create table filme (
 create table sala (
                       id int primary key auto_increment,
                       nome varchar(300),
-                      capacidade int,
+                      capacidade varchar(300),
                       local_sala varchar(300)
 );
 
 create table poltrona (
                           id int primary key auto_increment,
                           numero int,
-                          fileira int,
+                          fileira varchar(10),
                           status_poltrona varchar(100),
                           sala_id int not null,
                           foreign key(sala_id) references sala (id)
@@ -60,7 +61,8 @@ create table ingresso (
 create table venda (
                        id int primary key auto_increment,
                        valor double,
-                       data_hora datetime,
+                       data date,
+                       forma_pagamento varchar(100),
                        ingresso_id int not null,
                        cliente_id int not null,
                        foreign key(ingresso_id) references ingresso(id),
