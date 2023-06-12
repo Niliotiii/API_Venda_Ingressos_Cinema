@@ -6,7 +6,7 @@ export class SessaoController {
 
     public async getAllSessoes(req: Request, res: Response) {
 
-        const sessoes = await AppDataSource.manager.find(Sessao, { relations: ['sala_id', 'filme_id'] })
+        const sessoes = await AppDataSource.manager.find(Sessao)
 
         res.status(200).json({ dados: sessoes });
     }
