@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../../../config/databases/mysql-datasource.config';
 import {Sessao} from "./sessao.entity";
+import {validate} from "class-validator";
 
 export class SessaoController {
 
@@ -37,6 +38,11 @@ export class SessaoController {
         sessao.sala_id = sala_id;
         sessao.filme_id = filme_id;
 
+        const erros = await validate(sessao);
+        if (erros.length > 0){
+            return res.status(400).json(erros);
+        }
+
         const _sessao = await AppDataSource.manager.save(sessao);
 
         res.status(201).json(_sessao);
@@ -55,6 +61,10 @@ export class SessaoController {
             sessao.sala_id = sala_id;
             sessao.filme_id = filme_id;
 
+            const erros = await validate(sessao);
+            if (erros.length > 0){
+                return res.status(400).json(erros);
+            }
             await AppDataSource.manager.save(sessao);
 
             res.json(sessao);

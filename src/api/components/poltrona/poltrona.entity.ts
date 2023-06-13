@@ -1,6 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from 'typeorm';
 import { Sala } from '../sala/sala.entity';
-
 @Entity('poltrona')
 export class Poltrona {
   @PrimaryGeneratedColumn()

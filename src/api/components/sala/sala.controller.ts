@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../../../config/databases/mysql-datasource.config';
 import {Sala} from "./sala.entity";
+import {validate, Validate} from "class-validator";
 
 
 export class SalaController {
@@ -34,6 +35,10 @@ export class SalaController {
         sala.capacidade = capacidade;
         sala.local_sala = local_sala;
 
+        const erros = await validate(sala);
+        if (erros.length > 0){
+           return res.status(400).json(erros);
+        }
         const _sala = await AppDataSource.manager.save(sala);
 
         res.status(201).json(_sala);
@@ -49,6 +54,11 @@ export class SalaController {
             sala.nome = nome;
             sala.capacidade = capacidade;
             sala.local_sala = local_sala;
+
+            const erros = await validate(sala);
+            if (erros.length > 0){
+                return res.status(400).json(erros);
+            }
 
             await AppDataSource.manager.save(sala);
 
