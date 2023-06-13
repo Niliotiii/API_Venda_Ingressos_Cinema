@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Sala } from '../sala/sala.entity';
 import { Filme } from "../filme/filme.entity";
-import {IsDateString, IsInt, IsNotEmpty, IsString, IsUUID} from "class-validator";
+import {IsDateString, IsInt, IsNotEmpty, IsString, ValidateNested} from "class-validator";
 
 @Entity('sessao')
 export class Sessao {
