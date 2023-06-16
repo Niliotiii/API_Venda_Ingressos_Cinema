@@ -32,12 +32,19 @@ export class Venda {
     @Column()
     forma_pagamento!:string;
 
+    @IsNotEmpty({
+            message:"propriedade não pode ser vazia"
+        }
+    )
     @IsInt()
     @ManyToOne( ()=> Cliente, (cliente)=>cliente.id)
     @JoinColumn({name:'cliente_id', referencedColumnName:'id'})
     cliente_id!: Cliente;
 
-
+    @IsNotEmpty({
+            message:"propriedade não pode ser vazia"
+        }
+    )
     @IsInt()
     @ManyToOne(()=> Ingresso, (ingresso)=>ingresso.id)
     @JoinColumn({name:'ingresso_id', referencedColumnName:'id'})
