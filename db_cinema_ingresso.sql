@@ -24,7 +24,7 @@ create table filme (
 create table sala (
                       id int primary key auto_increment,
                       nome varchar(300),
-                      capacidade varchar(300),
+                      capacidade int,
                       local_sala varchar(300)
 );
 
@@ -68,3 +68,9 @@ create table venda (
                        foreign key(ingresso_id) references ingresso(id),
                        foreign key(cliente_id) references cliente(id)
 );
+
+INSERT INTO cliente (nome, cpf, rg, email, endereco, telefone)
+VALUES ('Nome do Cliente', '12345678900', '1234567', 'cliente@email.com', 'Endereço do Cliente', '123456789');
+
+INSERT INTO filme (titulo, sinopse, atores, diretor, tempo)
+VALUES ('Título do Filme', 'Sinopse do Filme', 'Atores do Filme', 'Diretor do Filme', '01:30:00');
